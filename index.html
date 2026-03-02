@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcos Pomeranietz | Analista Programador</title>
+    <meta name="description"
+        content="Portfolio de Marcos Pomeranietz – Analista Programador especializado en .NET, Python, SQL Server y automatización de sistemas logísticos." />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        navy: { 900: '#0a0f1e', 800: '#0d1630', 700: '#111d3f' },
+                        cyan: { 400: '#22d3ee', 500: '#06b6d4' },
+                        violet: { 400: '#a78bfa', 500: '#8b5cf6' }
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.7s ease both',
+                        'fade-in': 'fadeIn 1s ease both',
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite',
+                        'bar': 'bar 1.4s ease both',
+                    },
+                    keyframes: {
+                        fadeUp: { '0%': { opacity: '0', transform: 'translateY(30px)' }, '100%': { opacity: '1', transform: 'none' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+                        float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+                        bar: { '0%': { width: '0%' }, '100%': { width: 'var(--pct)' } },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0f1e;
+            color: #e2e8f0;
+        }
+
+        ::selection {
+            background: #22d3ee33;
+        }
+
+        /* Gradient mesh background */
+        .mesh-bg {
+            background: radial-gradient(ellipse 80% 60% at 20% 20%, #1e1b4b55, transparent),
+                radial-gradient(ellipse 60% 50% at 80% 80%, #0e3f5c44, transparent),
+                #0a0f1e;
+        }
+
+        /* Glass card */
+        .glass {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Animated gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #22d3ee 0%, #a78bfa 60%, #22d3ee 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Glowing border on hover */
+        .card-hover {
+            transition: transform .3s, box-shadow .3s;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 28px rgba(34, 211, 238, 0.15), 0 0 0 1px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Skill bar */
+        .skill-bar-fill {
+            height: 6px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #22d3ee, #8b5cf6);
+            width: 0%;
+            transition: width 1.4s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        /* Nav link */
+        .nav-link {
+            position: relative;
+            transition: color .25s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #22d3ee, #a78bfa);
+            transition: width .3s;
+            border-radius: 99px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #22d3ee;
+        }
+
+        /* Dot pulse (hero) */
+        .dot-pulse {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #22d3ee;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.6);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(34, 211, 238, 0);
+            }
+        }
+
+        /* Section reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Tag badge */
+        .badge {
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.25);
+            color: #67e8f9;
+            border-radius: 99px;
+            padding: 3px 12px;
+            font-size: .75rem;
+            font-weight: 500;
+        }
+
+        /* Timeline line */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: .4rem;
+            top: 8px;
+            bottom: -24px;
+            width: 2px;
+            background: linear-gradient(180deg, #22d3ee, #8b5cf600);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #22d3ee, #8b5cf6);
+            box-shadow: 0 0 10px rgba(34, 211, 238, .5);
+        }
+
+        /* Carousel hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Mobile menu */
+        #mobile-menu {
+            transition: max-height .4s ease, opacity .4s ease;
+            overflow: hidden;
+        }
+
+        #mobile-menu.closed {
+            max-height: 0;
+            opacity: 0;
+        }
+
+        #mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0f1e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #22d3ee, #8b5cf6);
+            border-radius: 99px;
+        }
+    </style>
+</head>
+
+<body class="mesh-bg antialiased">
+
+    <!-- ──────────────── NAVBAR ──────────────── -->
+    <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+        <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#hero" class="text-xl font-bold gradient-text tracking-tight">MP<span
+                    class="text-white">.</span></a>
+
+            <!-- Desktop nav -->
+            <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <li><a href="#about" class="nav-link">Sobre mí</a></li>
+                <li><a href="#experience" class="nav-link">Experiencia</a></li>
+                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="#education" class="nav-link">Educación</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#certs" class="nav-link">Certificaciones</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+
+            <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold
+       bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:opacity-90 transition">
+                Contacto
+            </a>
+
+            <!-- Hamburger -->
+            <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none" aria-label="Menu">
+                <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="closed md:hidden glass px-6 pb-4">
+            <ul class="flex flex-col gap-4 text-sm font-medium text-slate-300 pt-2">
+                <li><a href="#about" class="mobile-link block py-1">Sobre mí</a></li>
+                <li><a href="#experience" class="mobile-link block py-1">Experiencia</a></li>
+                <li><a href="#proyectos" class="mobile-link block py-1">Proyectos</a></li>
+                <li><a href="#education" class="mobile-link block py-1">Educación</a></li>
+                <li><a href="#skills" class="mobile-link block py-1">Skills</a></li>
+                <li><a href="#certs" class="mobile-link block py-1">Certificaciones</a></li>
+                <li><a href="#contact" class="mobile-link block py-1">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ──────────────── HERO ──────────────── -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Ambient glows -->
+        <div
+            class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-violet-500/10 blur-3xl animate-pulse-slow pointer-events-none">
+        </div>
+        <div class="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-cyan-500/10 blur-3xl animate-pulse-slow pointer-events-none"
+            style="animation-delay:2s"></div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <!-- Avatar placeholder with initials -->
+            <div class="mb-8 flex justify-center animate-float">
+                <div
+                    class="w-28 h-28 rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 p-[3px] shadow-[0_0_40px_rgba(34,211,238,0.3)]">
+                    <img src="profileimg.png" alt="Marcos Pomeranietz" class="w-full h-full rounded-full object-cover">
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 mb-4 animate-fade-in" style="animation-delay:.1s">
+                <span class="dot-pulse"></span>
+                <span class="text-cyan-400 text-sm font-medium tracking-widest uppercase">Disponible para nuevas
+                    oportunidades</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-black mb-4 animate-fade-up" style="animation-delay:.2s">
+                Marcos <span class="gradient-text">Pomeranietz</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl text-slate-400 font-medium mb-6 animate-fade-up" style="animation-delay:.35s">
+                Analista Programador · SQL Server · .NET · Python
+            </p>
+
+            <p class="text-slate-500 text-base mb-10 max-w-xl mx-auto animate-fade-up" style="animation-delay:.5s">
+                APIs &amp; Automatización · Sistemas Logísticos · Buenos Aires, Argentina
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 animate-fade-up" style="animation-delay:.65s">
+                <a href="#experience"
+                    class="px-8 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold hover:opacity-90 transition shadow-lg">
+                    Ver mi trabajo
+                </a>
+                <a href="#contact"
+                    class="px-8 py-3 rounded-full glass text-slate-300 font-semibold hover:border-cyan-400/50 transition">
+                    Contactame
+                </a>
+            </div>
+
+            <!-- Social links -->
+            <div class="flex justify-center gap-6 mt-10 animate-fade-in" style="animation-delay:.8s">
+                <a href="https://www.linkedin.com/in/marcos-pomeranietz/" target="_blank"
+                    class="text-slate-500 hover:text-cyan-400 transition" aria-label="LinkedIn">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-1.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 10.94v-8.37H5.5v8.37h2.77z" />
+                    </svg>
+                </a>
+                <a href="mailto:marcospomeranietz@gmail.com" class="text-slate-500 hover:text-cyan-400 transition"
+                    aria-label="Email">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/marcospome" target="_blank"
+                    class="text-slate-500 hover:text-cyan-400 transition" aria-label="GitHub">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 animate-bounce">
+            <span class="text-xs tracking-widest uppercase">Scroll</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- ──────────────── ABOUT ──────────────── -->
+    <section id="about" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">Sobre mí</p>
+                    <h2 class="text-4xl font-bold mb-6 text-white">Desarrollador apasionado por la <span
+                            class="gradient-text">tecnología</span></h2>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        Soy un desarrollador con experiencia en <strong class="text-slate-200">C#, Python, JavaScript,
+                            HTML/CSS y SQL</strong>, especializado en la creación de soluciones que mejoran la
+                        eficiencia y optimizan procesos en el área de sistemas y logística internacional.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        Me defino como proactivo, curioso y orientado a resultados. Disfruto enfrentar desafíos técnicos
+                        complejos y transformarlos en soluciones elegantes y escalables.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="badge">📍 Buenos Aires, Argentina</span>
+                        <span class="badge">💼 Disponible</span>
+                        <span class="badge">🎓 Analista de Sistemas</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass rounded-2xl p-6 card-hover">
+                        <div class="text-3xl font-black gradient-text">3+</div>
+                        <div class="text-slate-400 text-sm mt-1">Años de experiencia</div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 card-hover">
+                        <div class="text-3xl font-black gradient-text">8+</div>
+                        <div class="text-slate-400 text-sm mt-1">Certificaciones</div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 card-hover">
+                        <div class="text-3xl font-black gradient-text">5+</div>
+                        <div class="text-slate-400 text-sm mt-1">Tecnologías</div>
+                    </div>
+                    <div class="glass rounded-2xl p-6 card-hover">
+                        <div class="text-3xl font-black gradient-text">2</div>
+                        <div class="text-slate-400 text-sm mt-1">Instituciones educativas</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── EXPERIENCE ──────────────── -->
+    <section id="experience" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">Trayectoria</p>
+                <h2 class="text-4xl font-bold text-white">Experiencia <span class="gradient-text">Profesional</span>
+                </h2>
+            </div>
+
+            <div class="reveal space-y-8">
+
+                <!-- Job 1 -->
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Analista Programador Jr</h3>
+                            <p class="text-cyan-400 font-medium mt-1">Exologistica</p>
+                        </div>
+                        <span class="badge whitespace-nowrap">Mayo 2024 – Actualidad</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Desarrollo de interfaces entre sistemas logísticos (ERP, TMS, WMS), gestión y optimización de
+                        bases de datos con SQL Server, y coordinación de proyectos IT internos.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge">C# / .NET</span>
+                        <span class="badge">SQL Server</span>
+                        <span class="badge">ERP/TMS/WMS</span>
+                        <span class="badge">APIs</span>
+                    </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Profesor de Programación</h3>
+                            <p class="text-cyan-400 font-medium mt-1">Instituto Superior Nuestra Señora de La Paz</p>
+                        </div>
+                        <span class="badge whitespace-nowrap">Ago 2025 – Oct 2025</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Enseñanza de Python con foco en buenas prácticas, lógica de programación y desarrollo de
+                        proyectos reales para estudiantes de nivel superior.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge">Python</span>
+                        <span class="badge">Enseñanza</span>
+                        <span class="badge">Buenas prácticas</span>
+                    </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="glass rounded-2xl p-8 card-hover">
+                    <div class="flex flex-wrap items-start justify-between gap-4 mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Analista de Soporte para TI</h3>
+                            <p class="text-cyan-400 font-medium mt-1">Exologistica</p>
+                        </div>
+                        <span class="badge whitespace-nowrap">Ene 2023 – May 2024</span>
+                    </div>
+                    <p class="text-slate-400 leading-relaxed mb-4">
+                        Resolución de incidentes técnicos, documentación de procesos y soporte a usuarios, optimización
+                        de flujos operativos del área de sistemas.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="badge">Soporte TI</span>
+                        <span class="badge">Documentación</span>
+                        <span class="badge">ITSM</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── PROYECTOS ──────────────── -->
+    <section id="proyectos" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">Portfolio</p>
+                <h2 class="text-4xl font-bold text-white">Mis <span class="gradient-text">Proyectos</span></h2>
+            </div>
+
+            <div class="reveal grid lg:grid-cols-2 gap-12">
+                <!-- MedSys -->
+                <div class="glass rounded-3xl p-8 card-hover flex flex-col">
+                    <div class="relative w-full h-64 rounded-2xl overflow-hidden mb-6 group">
+                        <!-- Carousel Container -->
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar h-full w-full">
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/medsys/medsys.png" alt="MedSys 1"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/medsys/medsys2.png" alt="MedSys 2"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/medsys/medsys3.png" alt="MedSys 3"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/medsys/medsys4.png" alt="MedSys 4"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/medsys/medsys5.png" alt="MedSys 5"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 pointer-events-none">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/80 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">MedSys</h3>
+                    <p class="text-slate-400 mb-4 flex-grow leading-relaxed">Sistema de gestión para centros médicos.
+                        Permite administrar turnos, pacientes, historias clínicas y médicos de manera eficiente con una
+                        interfaz moderna y fluida.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="badge">Python</span>
+                        <span class="badge">Django</span>
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">HTML</span>
+                        <span class="badge">CSS</span>
+                    </div>
+                    <a href="https://mutualsanjose.site/" target="_blank"
+                        class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold transition hover:opacity-90 shadow-lg mt-auto">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                        Ver Web
+                    </a>
+                </div>
+
+                <!-- Doggy Pomodoro -->
+                <div class="glass rounded-3xl p-8 card-hover flex flex-col">
+                    <div class="relative w-full h-64 rounded-2xl overflow-hidden mb-6 group">
+                        <!-- Carousel Container -->
+                        <div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar h-full w-full">
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/doggypomodoro/doggy.png" alt="Doggy Pomodoro 1"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/doggypomodoro/doggy2.png" alt="Doggy Pomodoro 2"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/doggypomodoro/doggy3.png" alt="Doggy Pomodoro 3"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/doggypomodoro/doggy4.png" alt="Doggy Pomodoro 4"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                            <div class="snap-center shrink-0 w-full h-full relative">
+                                <img src="img-proyectos/doggypomodoro/doggy5.png" alt="Doggy Pomodoro 5"
+                                    class="absolute inset-0 w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 pointer-events-none">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/80 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/40 shadow-[0_0_4px_rgba(0,0,0,0.5)]"></div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Doggy Pomodoro</h3>
+                    <p class="text-slate-400 mb-4 flex-grow leading-relaxed">Aplicación Pomodoro interactiva, con modo
+                        oscuro y temas personalizables. Permite gestionar tiempos de trabajo y descanso con preferencias
+                        persistentes.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="badge">JavaScript</span>
+                        <span class="badge">Tailwind CSS</span>
+                        <span class="badge">Vite</span>
+                        <span class="badge">HTML</span>
+                    </div>
+                    <a href="https://github.com/marcospome/doggy-pomodoro" target="_blank"
+                        class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-semibold transition mt-auto">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                        </svg>
+                        Ver en GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── EDUCATION ──────────────── -->
+    <section id="education" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">Formación</p>
+                <h2 class="text-4xl font-bold text-white">Educación <span class="gradient-text">Académica</span></h2>
+            </div>
+
+            <div class="reveal space-y-8 pl-4">
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass rounded-2xl p-8 card-hover">
+                        <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Licenciatura en Gestión de Tecnología</h3>
+                                <p class="text-cyan-400 font-medium mt-1">Universidad Nacional de La Matanza</p>
+                            </div>
+                            <span class="badge whitespace-nowrap">Mar 2025 – Actualidad</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Information Technology Management · En curso</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass rounded-2xl p-8 card-hover">
+                        <div class="flex flex-wrap items-start justify-between gap-4 mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Analista de Sistemas</h3>
+                                <p class="text-cyan-400 font-medium mt-1">Instituto Superior Nuestra Señora de La Paz
+                                </p>
+                            </div>
+                            <span class="badge whitespace-nowrap">Ago 2021 – Nov 2024</span>
+                        </div>
+                        <p class="text-slate-400 text-sm">Computer Systems Analysis · Completado</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── SKILLS ──────────────── -->
+    <section id="skills" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">Tecnologías</p>
+                <h2 class="text-4xl font-bold text-white">Stack <span class="gradient-text">&amp; Skills</span></h2>
+            </div>
+
+            <div class="reveal grid md:grid-cols-2 gap-12">
+                <!-- Skill bars -->
+                <div class="space-y-6" id="skill-bars">
+                    <div class="skill-item">
+                        <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">SQL
+                                Server / T-SQL</span><span class="text-cyan-400 font-bold" data-pct="88">88%</span>
+                        </div>
+                        <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div class="skill-bar-fill" data-pct="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">C# /
+                                .NET</span><span class="text-cyan-400 font-bold">85%</span></div>
+                        <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div class="skill-bar-fill" data-pct="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex justify-between text-sm mb-2"><span
+                                class="text-slate-300 font-medium">Python</span><span
+                                class="text-cyan-400 font-bold">82%</span></div>
+                        <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div class="skill-bar-fill" data-pct="82"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex justify-between text-sm mb-2"><span
+                                class="text-slate-300 font-medium">JavaScript / Node.js</span><span
+                                class="text-cyan-400 font-bold">75%</span></div>
+                        <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div class="skill-bar-fill" data-pct="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex justify-between text-sm mb-2"><span class="text-slate-300 font-medium">FastAPI
+                                / Django</span><span class="text-cyan-400 font-bold">72%</span></div>
+                        <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div class="skill-bar-fill" data-pct="72"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="flex justify-between text-sm mb-2"><span
+                                class="text-slate-300 font-medium">Angular</span><span
+                                class="text-cyan-400 font-bold">65%</span></div>
+                        <div class="h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div class="skill-bar-fill" data-pct="65"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tag cloud -->
+                <div>
+                    <p class="text-slate-400 text-sm mb-6 font-medium">Otras tecnologías &amp; herramientas</p>
+                    <div class="flex flex-wrap gap-3" id="tech-tags">
+                        <!-- Filled by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── CERTIFICATIONS ──────────────── -->
+    <section id="certs" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="reveal text-center mb-16">
+                <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">Aprendizaje continuo</p>
+                <h2 class="text-4xl font-bold text-white">Certificaciones <span class="gradient-text">&amp;
+                        Cursos</span></h2>
+            </div>
+
+            <div class="reveal grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="certs-grid">
+                <!-- Filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── CONTACT ──────────────── -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-2xl mx-auto text-center">
+            <div class="reveal">
+                <p class="text-cyan-400 text-sm font-semibold tracking-widest uppercase mb-3">¿Trabajamos juntos?</p>
+                <h2 class="text-4xl font-bold text-white mb-6">Contacto</h2>
+                <p class="text-slate-400 mb-12">Estoy abierto a nuevas oportunidades, proyectos freelance o simplemente
+                    charlar sobre tecnología.</p>
+
+                <div class="glass rounded-3xl p-10 card-hover mb-8">
+                    <div class="space-y-6">
+                        <a href="mailto:marcospomeranietz@gmail.com"
+                            class="flex items-center justify-center gap-4 text-slate-300 hover:text-cyan-400 transition text-lg font-medium">
+                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            marcospomeranietz@gmail.com
+                        </a>
+                        <a href="https://www.linkedin.com/in/marcos-pomeranietz/" target="_blank"
+                            class="flex items-center justify-center gap-4 text-slate-300 hover:text-cyan-400 transition text-lg font-medium">
+                            <svg class="w-6 h-6 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zm-1.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 10.94v-8.37H5.5v8.37h2.77z" />
+                            </svg>
+                            linkedin.com/in/marcos-pomeranietz
+                        </a>
+                        <div class="flex items-center justify-center gap-4 text-slate-300 text-lg font-medium">
+                            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            Buenos Aires, Argentina
+                        </div>
+                    </div>
+                </div>
+
+                <a href="mailto:marcospomeranietz@gmail.com"
+                    class="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-bold text-lg hover:opacity-90 transition shadow-xl">
+                    Enviar mensaje
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ──────────────── FOOTER ──────────────── -->
+    <footer class="py-8 px-6 border-t border-white/5 text-center text-slate-600 text-sm">
+        <p>© 2026 Marcos Pomeranietz · Hecho con ❤️ y mucho ☕</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
