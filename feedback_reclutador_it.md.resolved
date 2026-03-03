@@ -1,0 +1,56 @@
+# 📑 Reporte de Feedback: Portfolio IT - Marcos Pomeranietz
+
+**De:** Senior IT Recruiter (10+ años de experiencia)  
+**Para:** Marcos Pomeranietz  
+**Objetivo:** Análisis crítico, honesto y constructivo del portfolio profesional.
+
+---
+
+## 🌟 Primera Impresión (El "Eye Candy")
+El diseño es **sobresaliente**. Como reclutador, paso por cientos de sitios y la mayoría son plantillas genéricas o excesivamente simples. 
+
+- **Estética "Premium":** El uso de *glassmorphism*, degradados sutiles y animaciones fluidas me dice de inmediato que te importa la **calidad en la entrega** y la **atención al detalle**.
+- **Hero Section:** Tu nombre es lo primero que veo, seguido de un rol claro ("Analista Programador"). La etiqueta de "Disponible" es un gran acierto psicológico; genera una sensación de inmediatez.
+- **Identidad:** El logo "MP." arriba a la izquierda ayuda a construir tu marca personal.
+
+---
+
+## 🛠️ Stack Técnico y Experiencia
+Aquí es donde decido si te llamo para una entrevista técnica.
+
+- **Jerarquización de Skills:** SQL Server, .NET y Python están al frente. Son tecnologías con una demanda altísima y perfiles estables. Mencionar WMS, TMS y ERP es un **diferenciador brutal** si buscas roles en logística o fintech.
+- **Experiencia en Exologística:** Es sólida. Haber pasado de Soporte a Analista Programador Jr muestra un **crecimiento orgánico** y capacidad de aprendizaje dentro de una empresa real.
+- **Rol de Profesor:** Esto es un "gold nugget" para un reclutador. Enseñar programación demuestra que dominas los fundamentos y que tienes **habilidades de comunicación/soft skills**, algo raro en perfiles puramente técnicos.
+
+---
+
+## 📁 Proyectos (La "Prueba de Concepto")
+- **MedSys:** Es tu proyecto estrella. No es un "To-Do List" de tutorial; es un sistema de gestión real con Django. Que tenga un link a una web viva (`mutualsanjose.site`) es crucial. **Consejo:** Si tienes el repo público, agrégalo también (vi que solo tiene el botón de "Ver Web").
+- **Doggy Pomodoro:** Muestra tu faceta más moderna y front-end (JavaScript, Tailwind, Vite). Es un buen contraste al perfil más "backend/enterprise" de MedSys.
+
+---
+
+## 🔎 Crítica Constructiva (Lo que falta para el 10/10)
+
+### 1. Las Barras de Porcentaje (%)
+> [!WARNING]
+> **Honestidad brutal:** Los reclutadores técnicos y tech leads solemos odiar los porcentajes de habilidades. ¿Qué significa un 88% en SQL Server? ¿Sabes hacer backups, optimizar queries complejas o administrar el motor?  
+> **Sugerencia:** Cámbialas por niveles (Junior, Semi Senior, Senior) o simplemente deja los logos/badges con los años de experiencia aproximados.
+
+### 2. El Botón de "Descargar CV" (PDF)
+> [!IMPORTANT]
+> A veces necesito tu CV para subirlo a un ATS (Applicant Tracking System) o enviárselo a un manager por correo. No veo un botón claro de **"Descargar CV en PDF"**.  
+> **Sugerencia:** Agrégalo prominentemente en el Hero o en la sección de Contacto.
+
+### 3. Títulos de Mercado
+Eres "Analista Programador", pero para los algoritmos de LinkedIn y portales globales, quizás te convenga usar también **"Backend Developer (.NET / Python)"** o **"Fullstack Developer"**. 
+
+### 4. Certificaciones "Clickables"
+Tienes una lista genial de certificados. Si pudieras poner el link a la credencial de LinkedIn (o el PDF del certificado) en cada tarjeta, le darías una capa extra de **verificabilidad** instantánea.
+
+---
+
+## 🏁 Conclusión: ¿Te contrataría?
+**Definitivamente sí.** Tu portfolio proyecta profesionalismo, proactividad y un stack moderno pero con los pies en la tierra (SQL/Sistemas ERP). Tienes un perfil muy "empleable" tanto para empresas locales grandes como para consultoras globales.
+
+**Nota final:** 9.2/10. Implementa el botón de descarga de CV y quita los porcentajes, y tendrás una herramienta de venta profesional letal.

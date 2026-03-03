@@ -8,14 +8,14 @@ const techTags = [
 ];
 
 const certifications = [
-    { title: 'Inteligencia Artificial y Productividad', issuer: 'EducacionIT', year: '2025', icon: '🤖' },
-    { title: 'Toma de Decisiones', issuer: 'UADE Business School', year: '2025', icon: '🧠' },
-    { title: 'APIs con FastAPI en Python', issuer: 'Udemy', year: '2025', icon: '🚀' },
-    { title: 'Ultimate Python: de cero a experto', issuer: 'Udemy', year: '2025', icon: '🐍' },
-    { title: 'NodeJS', issuer: 'UTN FRBA', year: '2025', icon: '🟢' },
-    { title: 'Angular 13', issuer: 'EducacionIT', year: '2024', icon: '🅰️' },
-    { title: 'Scrum desde cero', issuer: 'Udemy', year: '2024', icon: '📋' },
-    { title: 'Django y Django REST Framework', issuer: 'Udemy', year: '2024', icon: '🎸' },
+    { title: 'Inteligencia Artificial y Productividad', issuer: 'EducacionIT', year: '2025', icon: '🤖', img: 'certificados/inteligencia-artificial.jpeg' },
+    { title: 'Toma de Decisiones', issuer: 'UADE Business School', year: '2025', icon: '🧠', img: null },
+    { title: 'APIs con FastAPI en Python', issuer: 'Udemy', year: '2025', icon: '🚀', img: 'certificados/fastapi.png' },
+    { title: 'Ultimate Python: de cero a experto', issuer: 'Udemy', year: '2025', icon: '🐍', img: 'certificados/python.png' },
+    { title: 'NodeJS', issuer: 'UTN FRBA', year: '2025', icon: '🟢', img: 'certificados/node.png' },
+    { title: 'Angular 13', issuer: 'EducacionIT', year: '2024', icon: '🅰️', img: 'certificados/angular.png' },
+    { title: 'Scrum desde cero', issuer: 'Udemy', year: '2024', icon: '📋', img: 'certificados/scrum.png' },
+    { title: 'Django y Django REST Framework', issuer: 'Udemy', year: '2024', icon: '🎸', img: 'certificados/django.png' },
 ];
 
 // ── RENDER TECH TAGS ──────────────────────────────────────────────────────────
@@ -39,17 +39,82 @@ function renderCerts() {
     if (!grid) return;
     certifications.forEach((cert, i) => {
         const card = document.createElement('div');
-        card.className = 'glass rounded-2xl p-6 card-hover flex flex-col gap-3';
+        // Add cursor-pointer to indicate it's clickable
+        card.className = 'glass rounded-2xl p-6 card-hover flex flex-col gap-3 cursor-pointer group';
         card.style.animationDelay = `${i * 80}ms`;
         card.innerHTML = `
-      <div class="text-3xl">${cert.icon}</div>
+      <div class="flex justify-between items-start">
+        <div class="text-3xl">${cert.icon}</div>
+        <div class="opacity-0 group-hover:opacity-100 transition-opacity text-cyan-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+            </svg>
+        </div>
+      </div>
       <h3 class="text-slate-200 font-semibold text-sm leading-snug">${cert.title}</h3>
       <div class="mt-auto flex items-center justify-between">
         <span class="text-slate-500 text-xs">${cert.issuer}</span>
         <span class="badge">${cert.year}</span>
       </div>
     `;
+
+        // Modal popup logic
+        card.addEventListener('click', () => {
+            const modal = document.getElementById('cert-modal');
+            const modalImg = document.getElementById('modal-img');
+
+            if (cert.img) {
+                // If the cert object has an image mapped in its object, display it
+                modalImg.src = cert.img;
+            } else {
+                // Placeholder fallback para los que no tengan
+                modalImg.src = `https://placehold.co/800x600/1e293b/22d3ee.png?text=Certificado+%0A${encodeURIComponent(cert.title)}`;
+            }
+            modalImg.alt = cert.title;
+
+            modal.classList.remove('hidden');
+            // Timeout to allow display block to apply before animating opacity
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
+        });
+
         grid.appendChild(card);
+    });
+}
+
+// ── INIT MODAL EVENTS ─────────────────────────────────────────────────────────
+
+function initModalEvents() {
+    const modal = document.getElementById('cert-modal');
+    const closeBtn = document.getElementById('close-modal');
+
+    if (!modal || !closeBtn) return;
+
+    function closeModal() {
+        modal.classList.add('opacity-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300); // Wait for transition to finish
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+
+    const modalContent = modal.querySelector('.pointer-events-auto');
+
+    // Cierra al hacer click afuera de la imagen
+    modal.addEventListener('click', (e) => {
+        // Fix: Since modal has children handling layout, we check if click was directly on the background
+        if (e.target === modal || !modalContent.contains(e.target)) {
+            closeModal();
+        }
+    });
+
+    // Cierra con la tecla ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
     });
 }
 
@@ -135,7 +200,7 @@ function initActiveNav() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 navLinks.forEach(link => {
-                    link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                    link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id} `);
                 });
             }
         });
@@ -182,18 +247,6 @@ function initTyped() {
     }
     setTimeout(tick, 1200);
 }
-
-// ── SMOOTH SCROLL OFFSET (fixed navbar) ──────────────────────────────────────
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-        const target = document.querySelector(link.getAttribute('href'));
-        if (!target) return;
-        e.preventDefault();
-        const offset = 80;
-        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
-    });
-});
 
 // ── CAROUSELS ─────────────────────────────────────────────────────────────────
 
@@ -269,4 +322,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initActiveNav();
     initTyped();
     initCarousels();
+    initModalEvents();
 });
